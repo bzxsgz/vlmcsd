@@ -1,0 +1,44 @@
+https://blog.csdn.net/Dyminas/article/details/80235271
+
+使用如下命令确认机器的cpu架构，一般都是intel
+
+  cat /proc/cpuinfo
+
+用wget从github上下载项目文件
+
+  wget https://github.com/Wind4/vlmcsd/releases/download/svn1111/binaries.tar.gz
+
+解压下载下来的压缩包：
+
+  tar -xvf binaries.tar.gz
+
+如果cpu是intel的话，直接输入以下命令进入对应目录：
+
+  cd binaries/Linux/intel/static
+
+否则的话需要在binaries目录内找到对应你机器CPU架构的目录进入。
+
+这里我是X64位的系统，所以直接执行下面的命令vlmcsd就启动了：
+
+  ./vlmcsd-x64-musl-static
+
+如果你的机器不是64位系统，则需要在此目录内找到对应系统位数的可执行文件来运行
+
+因为vlmcsd运行后会占用1688端口，所以我们可以输入以下命令查看是否成功启动：
+
+  netstat -lnp
+  
+之后以管理员身份运行cmd，依次输入以下命令来激活系统：
+
+  slmgr /skms 你服务器的IP或者域名
+  slmgr /ato
+  slmgr /xpr
+  
+ 激活Office
+1.首先以管理员身份运行CMD，然后切换到ospp.vbs的目录
+版本不同具体位置也不太同，具体自己根据实际情况输入命令，我是64位的Office2016命令如下
+  cd C:\Program Files\Microsoft Office\Office16
+2.设置KMS服务器地址
+  cscript ospp.vbs /sethst:192.168.1.102
+3.激活
+  cscript ospp.vbs /act
